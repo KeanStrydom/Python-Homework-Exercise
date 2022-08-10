@@ -8,8 +8,18 @@ For manual testing run:
 python3 quick_sort.py
 """
 from __future__ import annotations
+import random
 
+indexList = []
 
+def chooseRandomValue(values: list) -> int:
+    bWhile = True
+    while (bWhile):
+        iUpperBoundry = len(values) - 1
+        randomNumber = random.randint(0, iUpperBoundry)
+        if not(randomNumber in indexList):
+            return randomNumber
+            
 def quick_sort(collection: list) -> list:
     """A pure Python implementation of quick sort algorithm
 
@@ -26,7 +36,7 @@ def quick_sort(collection: list) -> list:
     """
     if len(collection) < 2:
         return collection
-    pivot = collection.pop()  # Use the last element as the first pivot
+    pivot = collection.pop(chooseRandomValue(collection))  # Use the last element as the first pivot
     greater: list[int] = []  # All elements greater than pivot
     lesser: list[int] = []  # All elements less than or equal to pivot
     for element in collection:
@@ -38,3 +48,5 @@ if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(quick_sort(unsorted))
+
+
